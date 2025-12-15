@@ -1,0 +1,14 @@
+using Microsoft.AspNetCore.Mvc;
+using MiniShopMVC.Models;
+using MiniShopMVC.Models.Entities;
+using MiniShopMVC.Models.Filters;
+
+namespace MiniShopMVC.Services;
+
+public interface ICategoryService
+{
+    Task<Category> UpdateCategoryAsync(CategoryUpdateViewModel model);
+    Task<List<Category>> GetCategoriesAsync(CategoryFilter f);
+    Task<Category> AddCategoryAsync(CategoryAddViewModel model);
+    Task<Category> DeleteCategoryAsync(int id);
+}

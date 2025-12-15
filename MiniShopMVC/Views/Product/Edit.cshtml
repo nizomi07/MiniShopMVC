@@ -1,0 +1,38 @@
+@model MiniShopMVC.Models.ProductUpdateViewModel;
+
+@{
+    ViewData["Title"] = "Update Product";
+    var updateProduct = ViewBag.UpdateProduct;
+}
+
+<h2 class="mb-4"> Update Product </h2>
+
+<form asp-controller="Product" asp-action="Update" method="post">
+        
+    <div class="mb-3">
+        <input asp-for="Id" type="hidden" value="@updateProduct.Id" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Название категории</label>
+        <input asp-for="Name" value="@updateProduct.Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"> </span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"> About Product </label>
+        <input asp-for="Description" value="@updateProduct.Description" class="form-control"/>
+        <span asp-validation-for="Description" class="text-danger"> </span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"> About Product </label>
+        <input asp-for="Price" value="@updateProduct.Price" class="form-control"/>
+        <span asp-validation-for="Price" class="text-danger"> </span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label"> About Product </label>
+        <input asp-for="CategoryId" value="@updateProduct.CategoryId" class="form-control"/>
+        <span asp-validation-for="CategoryId" class="text-danger"> </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Update </button>
+    <a asp-action="Index" class="btn btn-secondary ms-2"> Cancel </a>
+</form>

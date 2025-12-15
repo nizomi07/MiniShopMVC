@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Products Page";
+    var products = ViewBag.Products;
+}
+
+<div style="color: white; padding: 10px ">
+
+    <h1 class="display-4"> Products Page </h1>
+    <p> All Products in MiniShopMVC!</p>
+    
+    <a href="@Url.Action("Create", "Product")" class="btn btn-primary">
+        Add Product
+    </a>
+    <br/><br/><br/>
+
+    <div class="row">
+        @foreach (var product in products)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                       
+                        <h2> <strong> Name: </strong> <em> @product.Name </em> </h2>
+                        <h5 style="color: rgba(18,22,18,0.65)"> <strong style="color: black"> About: </strong> @product.Description </h5> <br/>
+                        <h4> Price: @product.Price $ </h4>                        
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 10px; align-items: center">
+                            <form asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" method="post">
+                                <button type="submit" style="background:#e53935;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;"> Delete </button>
+                            </form>
+                            
+                            <a href="@Url.Action("Edit", "Product", new { id = product.Id, name = product.Name, description = product.Description, price = product.Price, categoryId = product.CategoryId })" aria-label="anchor" class="btn btn-sm bg-primary-subtle me-1"
+                               data-bs-toggle="tooltip" data-bs-original-title="Edit" style="margin-top: 10px">
+                                <i class="mdi mdi-pencil-outline fs-14 text-primary"> Edit </i>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
