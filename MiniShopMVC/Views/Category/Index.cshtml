@@ -1,6 +1,7 @@
+@using MiniShopMVC.Models.Entities
 @{
     ViewData["Title"] = "Category Page";
-    var categories = ViewBag.Categories;
+    List<Category> categories = ViewBag.Categories;
 }
 
 <div class="text-center">
@@ -11,31 +12,6 @@
             Добавить категорию
         </a>
     </div>
-    <div class="row">
-        @foreach (var category in categories)
-        {
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-
-                    <div class="card-body">
-                        <h5 class="card-title">@category.Id</h5>
-                        <h4 class="card-title">@category.Name</h4>
-                        <h6 class="card-title">@category.Description</h6>
-
-                        <form asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" method="post">
-                            <button type="submit" style="background:#e53935;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;"> Delete </button>
-                        </form>
-                        
-                        
-                        <a href="@Url.Action("Update", "Product", new { id = category.Id, name = category.Name, description = category.Description })" aria-label="anchor" class="btn btn-sm bg-primary-subtle me-1"
-                           data-bs-toggle="tooltip" data-bs-original-title="Edit" style="margin-top: 10px">
-                            <i class="mdi mdi-pencil-outline fs-14 text-primary"> Edit </i>
-                        </a>
     
-                    </div>
-
-                </div>
-            </div>
-        }
-    </div>
+    @await Html.PartialAsync("_CategoryList", categories)
 </div>
